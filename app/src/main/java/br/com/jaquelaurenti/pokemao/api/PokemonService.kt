@@ -19,7 +19,6 @@ interface PokemonService {
         @Query("size") size: String
     ) : Call<PokemonResponse>
 
-
     @PUT("/api/pokemon")
     fun updatePokemon(
         @Body pokemon: Pokemon
@@ -29,5 +28,6 @@ interface PokemonService {
     fun getPokemon(
         @Path("number") number: String
     ) : Call<Pokemon>
+    
 
 }
