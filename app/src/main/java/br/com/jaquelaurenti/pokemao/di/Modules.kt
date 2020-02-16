@@ -1,5 +1,6 @@
 package br.com.jaquelaurenti.pokemao.di
 
+import android.content.Context
 import okhttp3.OkHttpClient
 import okhttp3.Interceptor
 import com.facebook.stetho.okhttp3.StethoInterceptor
@@ -11,6 +12,8 @@ import br.com.jaquelaurenti.pokemao.api.PokemonService
 import br.com.jaquelaurenti.pokemao.repository.PokemonRepositoryImpl
 import br.com.jaquelaurenti.pokemao.view.splash.SplashViewModel
 import br.com.jaquelaurenti.pokemao.api.AuthInterceptor
+import com.squareup.picasso.OkHttp3Downloader
+import com.squareup.picasso.Picasso
 import org.koin.dsl.module
 import org.koin.android.viewmodel.dsl.viewModel
 
@@ -42,4 +45,14 @@ val networkModule = module {
     single<Interceptor> { AuthInterceptor() }
     single { createNetworkClient(get()).create(PokemonService::class.java) }
     single { createOkhttpClientAuth(get()) }
+}
+
+val networkModule = module {
+    single { createPicassoAuth(get(), get()) }
+}
+private fun createPicassoAuth(context: Context, okHttpClient: OkHttpClient): Picasso {
+    return Picasso
+        .Builder(context)
+        .downloader(OkHttp3Downloader(okHttpClient))
+        .build()
 }

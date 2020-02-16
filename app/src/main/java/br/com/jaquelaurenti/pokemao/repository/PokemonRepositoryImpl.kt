@@ -2,6 +2,8 @@ package br.com.jaquelaurenti.pokemao.repository
 
 import br.com.jaquelaurenti.pokemao.api.PokemonService
 import br.com.jaquelaurenti.pokemao.model.HealthResponse
+import br.com.jaquelaurenti.pokemao.model.Pokemon
+import br.com.jaquelaurenti.pokemao.model.PokemonResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -16,4 +18,25 @@ class PokemonRepositoryImpl(var pokemonService: PokemonService) :
             override fun onResponse(call: Call<HealthResponse>, response: Response<HealthResponse>) {
                 onComplete() }
         }) }
+
+    override fun getPokemons(
+        size: Int, sort: String,
+        onComplete: (List<Pokemon>?) -> Unit,
+        onError: (Throwable?) -> Unit
+    ) {
+        pokemonService.getPokemons(size, sort)
+            .enqueue(object : Callback<PokemonResponse> {
+                override fun onFailure(call: Call<PokemonResponse>, t: Throwable) {
+                    onError(t)
+                }
+                override fun onResponse(call: Call<PokemonResponse>, response:
+                Response<PokemonResponse>) {
+                    if (response.isSuccessful) {
+                        onComplete(response.body()?.content)
+                    } else {
+                        onError(Throwable("Não foi possível carregar os Pokémons"))
+                    }
+                }
+            })
+    }
 }

@@ -15,8 +15,8 @@ interface PokemonService {
 
     @GET("/api/pokemon")
     fun getPokemons(
-        @Query("sort") sort: String,
-        @Query("size") size: Int
+        @Query("sort") sort: Int,
+        @Query("size") size: String
     ) : Call<PokemonResponse>
 
 
