@@ -4,7 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import br.com.jaquelaurenti.pokemao.R
-import br.com.jaquelaurenti.pokemao.view.list.ListPokemonActivity
+import br.com.jaquelaurenti.pokemao.view.list.ListPokemonsActivity
 import br.com.jaquelaurenti.pokemao.view.scan.ScanActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         btPokemonList.setOnClickListener {
-            startActivity(Intent(this, ListPokemonActivity::class.java))
+            startActivity(Intent(this, ListPokemonsActivity::class.java))
         }
 
         btClose.setOnClickListener {

@@ -12,6 +12,7 @@ import br.com.jaquelaurenti.pokemao.api.PokemonService
 import br.com.jaquelaurenti.pokemao.repository.PokemonRepositoryImpl
 import br.com.jaquelaurenti.pokemao.view.splash.SplashViewModel
 import br.com.jaquelaurenti.pokemao.api.AuthInterceptor
+import br.com.jaquelaurenti.pokemao.view.detail.DetailViewModel
 import br.com.jaquelaurenti.pokemao.view.form.FormPokemonViewModel
 import br.com.jaquelaurenti.pokemao.view.list.ListPokemonsViewModel
 import com.squareup.picasso.OkHttp3Downloader
@@ -34,7 +35,9 @@ val viewModelModule = module {
     viewModel { SplashViewModel(get()) }
     viewModel { ListPokemonsViewModel(get()) }
     viewModel { FormPokemonViewModel(get()) }
+    viewModel { DetailViewModel(get()) }
 }
+
 
 private fun createNetworkClient(okHttpClient: OkHttpClient): Retrofit {
     return Retrofit.Builder()

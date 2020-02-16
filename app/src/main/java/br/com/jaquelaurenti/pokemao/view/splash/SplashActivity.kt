@@ -7,6 +7,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 import android.content.Intent
 import br.com.jaquelaurenti.pokemao.view.main.MainActivity
 import android.widget.Toast
+import androidx.lifecycle.Observer
 
 class SplashActivity : AppCompatActivity() {
     val splashViewModel: SplashViewModel by viewModel()

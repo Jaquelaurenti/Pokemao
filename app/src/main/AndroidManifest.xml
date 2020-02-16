@@ -3,8 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="br.com.jaquelaurenti.pokemao">
 
-    <application
+    <uses-permission android:name="android.permission.INTERNET"/>
 
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+
+    <application
         android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,27 +22,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/FullScreen">
-        <uses-permission android:name="android.permission.INTERNET"
-            tools:ignore="WrongManifestParent" />
         <activity android:name=".view.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".view.scan.ScanActivity" />
-        <activity android:name=".view.list.ListPokemonActivity" />
-        <activity android:name=".view.form.FormPokemonActivity" />
-        <activity android:name=".view.detail.DetailActivity" />
-        <activity android:name=".view.main.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity android:name=".view.scan.ScanActivity">
         </activity>
+        <activity android:name=".view.list.ListPokemonsActivity">
+        </activity>
+        <activity android:name=".view.form.FormPokemonActivity">
+        </activity>
+        <activity android:name=".view.detail.DetailActivity">
+        </activity>
+        <activity android:name=".view.main.MainActivity">
 
-
+        </activity>
     </application>
-
 </manifest>
